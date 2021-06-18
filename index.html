@@ -891,17 +891,18 @@
    
  	
  	$('.card-wrapper').removeClass('card-wrapper-anim');
+	$(".share-slide").addClass("open");
  	var audio = document.getElementById("share");
     audio.play();
 
     setTimeout(function() {
-    	$(".share-slide").addClass("open");
+    
         $('.share-slide').addClass('card-wrapper-anim');
         $(".icon-grid").addClass("openx");
 	    $(".share-headline").addClass("openx");
 	    $(".scan-and-save-txt").addClass("openx");
 	    $(".qr-code-container").addClass("openx");
-    },420)
+    },500)
 
     setTimeout(function() {
 	    $(".close-icon").removeClass("closeAnim");
