@@ -15,6 +15,7 @@
 	        width: 100vw;
 	        height: 100vh;
 	        overflow-x: hidden;
+	        background:#03182D;
         }
 		a{
 			text-decoration: none;
@@ -127,6 +128,7 @@
 		.card-wrapper
 		{
 			
+			position: relative;
 			
 			background:  linear-gradient(184.47deg, #041D36 1.42%, #010C16 110.86%);
 			width: 100vw;
@@ -189,7 +191,7 @@
            border: none;
 		   box-sizing: border-box;
 	
-           box-shadow:0px 5px 30px #efb658;
+           box-shadow: 0px 8px 55px rgba(228, 180, 100, 0.8);
 
        }
 		.logo
@@ -327,7 +329,7 @@
 			width: min(10vw,5vh);
 			height: min(10vw,5vh);
 			position: absolute;
-			top: 4%;
+			top: 3%;
             right: 7%;
 
 
@@ -435,7 +437,7 @@
 
 	.arrow {
  position: fixed;
-  bottom: 2%;
+ top: 90%;
   right: 5%;
   width: 5vw;
   height: 5vw;
@@ -452,15 +454,15 @@
    /* round move */
    @keyframes float {
 	0% {
-		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		
 		transform: translatey(0px);
 	}
 	50% {
-		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		
 		transform: translatey(-45px);
 	}
 	100% {
-		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		
 		transform: translatey(0px);
 	}
 }
@@ -482,7 +484,7 @@
 		 left: calc(50% - 75vmax);
 		 top: calc(50% - 75vmax);
 		 pointer-events: none;
-		 z-index: 222;
+		 z-index: 5;
 		 animation: rotateFrame 8s linear;
 	    }
 	    .untitled__shutters:before, .untitled__shutters:after {
@@ -579,17 +581,20 @@
             mix-blend-mode: normal;
             backdrop-filter: blur(30px);
             z-index: -1;
-            opacity: 1;
+            opacity: 0;
             
         }
         
-        .share-slide .close-icon
+        .close-icon
         {
             position: absolute;
             top:4%;
             right: 7%;
             width: min(5vw,3vh);
             height: min(5vw,3vh); 
+            
+            opacity: 0;
+            transition: 0.2s;
          
            
             
@@ -615,6 +620,7 @@
             margin-bottom:  min(4vw,3vh);
           
             opacity: 0;
+            transition: 0.1s;
             
 
             
@@ -627,6 +633,7 @@
             margin-top: 30%;
            
             opacity: 0;
+            transition: 0.1s;
             
         }
 
@@ -642,6 +649,7 @@
             justify-content: center;
            
             opacity: 0;
+            transition: 0.1s;
            
             
         }
@@ -672,7 +680,8 @@
         {
             
             opacity: 0;
-            transition:  transform 1s ease-out;
+            transition: 0.1s;
+            
         }
         .qr-code-container img
         { 
@@ -684,7 +693,8 @@
 
         .open{
         	z-index: 2;
-            opacity: 1;
+        	opacity: 1;
+           
         }
        
         .openx{
@@ -755,17 +765,20 @@
 
 
 
-<div class="untitled__shutters"></div> <!--  animation white  -->
 
 
- <div class="card-wrapper" style="overflow: hidden;"> <!--  contact card wrapper  -->
+
+ <div class="card-wrapper" style="overflow: hidden;position: relative;"> <!--  contact card wrapper  -->
  
 
  	<div class="share-btn" onclick="openSlide()">
  		<img src="share-dark.png" alt="share">
  	</div>
 
+   
     <div class="arrow bounce"></div>
+ 
+  
  	<div class="hero-section">
         
         <div class="logo-wrapper">
@@ -843,6 +856,8 @@
  	
  </div>	
 
+ <div class="untitled__shutters"></div> <!--  animation white  -->
+
 </div>
 
 
@@ -891,18 +906,19 @@
    
  	
  	$('.card-wrapper').removeClass('card-wrapper-anim');
-	$(".share-slide").addClass("open");
+ 	$(".share-slide").addClass("open");
  	var audio = document.getElementById("share");
     audio.play();
 
     setTimeout(function() {
-    
+    	
         $('.share-slide').addClass('card-wrapper-anim');
         $(".icon-grid").addClass("openx");
 	    $(".share-headline").addClass("openx");
 	    $(".scan-and-save-txt").addClass("openx");
 	    $(".qr-code-container").addClass("openx");
-    },500)
+	    $(".close-icon").addClass("openx");
+    },470)
 
     setTimeout(function() {
 	    $(".close-icon").removeClass("closeAnim");
@@ -924,16 +940,21 @@
     setTimeout(function() {
     $(".share-slide").removeClass("open")
     },300)
+   
+    setTimeout(function() {
    $('.card-wrapper').addClass('card-wrapper-anim');
+   },350)
    
     $(".icon-grid").removeClass("openx");
     $(".share-headline").removeClass("openx");
     $(".scan-and-save-txt").removeClass("openx");
     $(".qr-code-container").removeClass("openx");
     $(".close-icon").addClass("closeAnim").delay(1000);
+
  	
     
     setTimeout(function() {
+    	 $(".close-icon").removeClass("openx");
     $('.untitled__shutters').fadeOut('fast');
     },1000);
     }
